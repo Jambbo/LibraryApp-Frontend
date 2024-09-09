@@ -6,7 +6,7 @@ export class BookModel{
     copies?: number;
     copiesAvailable?: number;
     category?: string;
-    img?: string;
+    imgDataId?: string;
 
     constructor(id: number,
                 title:string,
@@ -15,7 +15,7 @@ export class BookModel{
                 copies: number,
                 copiesAvailable: number,
                 category: string,
-                img: string
+                imgDataId?: string
     ){
         this.id = id;
         this.title = title;
@@ -24,7 +24,7 @@ export class BookModel{
         this.copies = copies;
         this.copiesAvailable = copiesAvailable;
         this.category = category;
-        this.img = img;
+        this.imgDataId = imgDataId;
     }   
 
 }

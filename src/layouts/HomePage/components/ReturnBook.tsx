@@ -5,9 +5,9 @@ export const ReturnBook: React.FC<{book: BookModel}> = (props) =>  {
     return (
         <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3">
             <div className="text-center">
-                {props.book.img ? 
+                {props.book.imgDataId ? 
                     <img
-                        src={props.book.img}
+                        src={`http://localhost:8080/api/v1/storage/image/${props.book.imgDataId}`}
                         width='151'
                         height='233'
                         alt="book"

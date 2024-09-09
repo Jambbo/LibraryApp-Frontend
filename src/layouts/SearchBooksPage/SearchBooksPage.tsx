@@ -15,6 +15,7 @@ export const SearchBooksPage = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [search, setSearch] = useState('');
     const [searchUrl, setSearchUrl] = useState('');
+    const [categorySelection, setCategorySelection] = useState('Book category');
 
 
     useEffect(() => {
@@ -54,7 +55,7 @@ export const SearchBooksPage = () => {
                     copies: responseData[key].copies,
                     copiesAvailable: responseData[key].copiesAvailable,
                     category: responseData[key].category,
-                    img: responseData[key].img,
+                    imgDataId: responseData[key].imgDataId,
                 });
             }
 
@@ -91,6 +92,21 @@ export const SearchBooksPage = () => {
         }
     }
 
+    const categoryField = (value: string) => {
+        if(
+            value.toLowerCase() === "fe" || 
+            value.toLowerCase() === "be" ||
+            value.toLowerCase() === "data" ||
+            value.toLowerCase() === "devops"
+        ){
+            setCategorySelection(value);
+            setSearchUrl(`/search/findByCategory?category=${value}&page=0&size=${booksPerPage}`);
+        }else{
+            setCategorySelection('All');
+            setSearchUrl(`?page=0&size=${booksPerPage}`);
+        }
+    }
+
     const indexOfLastBook: number = currentPage * booksPerPage;
     const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
     let lastItem = booksPerPage * currentPage <= totalAmountOfBooks ?
@@ -119,30 +135,30 @@ export const SearchBooksPage = () => {
                                 <button className="btn btn-secondary dropdown-toggle" type="button"
                                     id="dropdownMenuButton1" data-bs-toggle='dropdown'
                                     aria-expanded='false'>
-                                    Category
+                                    {categorySelection}
                                 </button>
                                 <ul className="dropdown-menu" aria-label="dropdownMenuButton1">
-                                    <li>
+                                    <li onClick={()=> categoryField('All')}>
                                         <a className="dropdown-item" href="#">
                                             All
                                         </a>
                                     </li>
-                                    <li>
+                                    <li onClick={()=> categoryField('fe')}>
                                         <a className="dropdown-item" href="#">
                                             Front End
                                         </a>
                                     </li>
-                                    <li>
+                                    <li onClick={()=> categoryField('be')}>
                                         <a className="dropdown-item" href="#">
                                             Back End
                                         </a>
                                     </li>
-                                    <li>
+                                    <li onClick={()=> categoryField('Data')}>
                                         <a className="dropdown-item" href="#">
                                             Data
                                         </a>
                                     </li>
-                                    <li>
+                                    <li onClick={()=> categoryField('DevOps')}>
                                         <a className="dropdown-item" href="#">
                                             DevOps
                                         </a>

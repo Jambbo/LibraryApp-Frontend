@@ -8,8 +8,8 @@ export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
                 <div className="col-md-2">
                     <div className="d-none d-lg-block">
                         {
-                            props.book.img ?
-                                <img src={props.book.img}
+                            props.book.imgDataId ?
+                                <img src={`http://localhost:8080/api/v1/storage/image/${props.book.imgDataId}`}
                                     width='123'
                                     height='196'
                                     alt="Book"
@@ -25,8 +25,8 @@ export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
                     <div className="d-lg-none d-flex justify-content-center
                         align-items-center">
                         {
-                            props.book.img ?
-                                <img src={props.book.img}
+                            props.book.imgDataId ?
+                                <img src={`http://localhost:8080/api/v1/storage/image/${props.book.imgDataId}`}
                                     width='123'
                                     height='196'
                                     alt="Book"
