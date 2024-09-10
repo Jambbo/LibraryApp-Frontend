@@ -10,24 +10,26 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 export const App = () => {
   return (
-    <div>
+    <div className='d-flex flex-column min-vh-100'>
       <Navbar />
-      <Switch>
+        <div className='flex-grow-1'>
+          <Switch>
 
-        <Route path='/' exact> {/* exact keyword says if the path is exactly '/' then redirect, not if it is '/smthing' */ }
-          <Redirect to='/home' />
-        </Route>
+            <Route path='/' exact> {/* exact keyword says if the path is exactly '/' then redirect, not if it is '/smthing' */ }
+              <Redirect to='/home' />
+            </Route>
 
-        <Route path='/home'>
-          <HomePage />
-        </Route>
+            <Route path='/home'>
+              <HomePage />
+            </Route>
 
-        <Route path='/search'>
-          <SearchBooksPage />
-        </Route>
+            <Route path='/search'>
+              <SearchBooksPage />
+            </Route>
 
 
-      </Switch>
+          </Switch>
+        </div>
       <Footer />
     </div>
   );
