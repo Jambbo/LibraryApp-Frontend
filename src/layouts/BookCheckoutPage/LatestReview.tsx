@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { ReviewModel } from "../../models/ReviewModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
+import { Review } from "../Utils/Review";
 
 export const LatestReview: React.FC<{ reviews: ReviewModel[], bookId: number | undefined, mobile: boolean }> = (props) => {
     return (
         <div className={props.mobile ? 'mt-3' : 'row mt-5'}>
             <div className={props.mobile ? '' : 'col-sm-2 col-md-2'}>
-                <h2>Latest Reviews</h2>
+                <h2>Latest Reviews:</h2>
             </div>
             <div className="col-sm-10 col-md-10">
                 {props.reviews.length > 0 ?
