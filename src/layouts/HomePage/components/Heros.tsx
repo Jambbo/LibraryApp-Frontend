@@ -21,11 +21,15 @@ export const Heros: React.FC<HerosProps> = ({ isAuthenticated }) => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            {!isAuthenticated && (
+                            {!isAuthenticated ? 
                                 <Link className="btn main-color btn-lg text-white" to="/signin">
                                     Sign up
                                 </Link>
-                            )}
+                                :
+                                <Link className="btn main-color btn-lg text-white" to="/search">
+                                    Explore top books
+                                </Link>
+                            }
                         </div>
                     </div>
                 </div>
@@ -58,11 +62,15 @@ export const Heros: React.FC<HerosProps> = ({ isAuthenticated }) => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            {!isAuthenticated && (
+                            {!isAuthenticated ? 
                                 <Link className="btn main-color btn-lg text-white" to="/signin">
                                     Sign up
                                 </Link>
-                            )}
+                                :
+                                <Link className="btn main-color btn-lg text-white" to="/search">
+                                    Explore top books
+                                </Link>
+                            }
                         </div>
                     </div>
                     <div className="m-2">
