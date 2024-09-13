@@ -5,37 +5,32 @@ import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { SearchBook } from './layouts/SearchBooksPage/components/SearchBook';
 import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { BookCheckoutPage } from './layouts/BookCheckoutPage/BookCheckoutPage';
-
+import SignInPage from './layouts/SignInPage/SignInPage';
 
 export const App = () => {
   return (
     <div className='d-flex flex-column min-vh-100'>
       <Navbar />
-        <div className='flex-grow-1'>
-          <Switch>
+      <div className='flex-grow-1'>
+        <Routes>
+          {/* Redirecting '/' to '/home' */}
+          <Route path='/' element={<Navigate to='/home' />} />
 
-            <Route path='/' exact> {/* exact keyword says if the path is exactly '/' then redirect, not if it is '/smthing' */ }
-              <Redirect to='/home' />
-            </Route>
+          {/* Home page */}
+          <Route path='/home' element={<HomePage />} />
 
-            <Route path='/home'>
-              <HomePage />
-            </Route>
+          {/* Search books page */}
+          <Route path='/search' element={<SearchBooksPage />} />
 
-            <Route path='/search'>
-              <SearchBooksPage />
-            </Route>
+          <Route path='/signin' element={<SignInPage/>}/>
 
-            <Route path='/checkout/:bookId'>
-              <BookCheckoutPage />
-            </Route>
-
-          </Switch>
-        </div>
+          {/* Checkout page with dynamic parameter */}
+          <Route path='/checkout/:bookId' element={<BookCheckoutPage />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );
-}
-
+};
