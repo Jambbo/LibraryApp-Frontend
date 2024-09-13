@@ -1,5 +1,10 @@
+import { Link } from "react-router-dom";
 
-export const Heros = () => {
+interface HerosProps {
+    isAuthenticated: boolean;
+}
+
+export const Heros: React.FC<HerosProps> = ({ isAuthenticated }) => {
     return (
         <div>
             <div className="d-none d-lg-block">
@@ -16,7 +21,11 @@ export const Heros = () => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            <a className="btn main-color btn-lg text-white" href="#">Sign up</a>
+                            {!isAuthenticated && (
+                                <Link className="btn main-color btn-lg text-white" to="/signin">
+                                    Sign up
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -49,7 +58,11 @@ export const Heros = () => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            <a className="btn main-color btn-lg text-white" href="#">Sign up</a>
+                            {!isAuthenticated && (
+                                <Link className="btn main-color btn-lg text-white" to="/signin">
+                                    Sign up
+                                </Link>
+                            )}
                         </div>
                     </div>
                     <div className="m-2">

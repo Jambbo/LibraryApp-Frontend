@@ -24,9 +24,9 @@ export const App: React.FC = () => {
       <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
       <div className='flex-grow-1'>
         <Routes>
-          <Route path='/' element={<Navigate to='/home' />} />
+          <Route path='/' element={<HomePage isAuthenticated={isAuthenticated} />} />
 
-          <Route path='/home' element={<HomePage />} />
+          <Route path='/home' element={<HomePage isAuthenticated={isAuthenticated} />} />
 
           <Route path='/search' element={<SearchBooksPage />} />
 

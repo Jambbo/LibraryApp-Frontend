@@ -4,13 +4,17 @@ import { ExploreTopBooks } from "./components/ExploreTopBooks";
 import { Heros } from "./components/Heros";
 import { LibraryServices } from "./components/LibraryServices";
 
-export const HomePage = () => {
+interface HomePageProps {
+    isAuthenticated: boolean;
+  }
+
+export const HomePage: React.FC<HomePageProps> = ({ isAuthenticated }) => {
     return (
         <>
             <ExploreTopBooks/>
             <Carousel/>
-            <Heros/>
-            <LibraryServices/>
+            <Heros isAuthenticated={isAuthenticated} />
+            <LibraryServices isAuthenticated={isAuthenticated} />
       </>
     );
 }
