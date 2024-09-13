@@ -10,7 +10,11 @@ interface JwtResponse {
   refreshToken: string;
 }
 
-const SignInPage: React.FC = () => {
+interface SignInPageProps {
+  setIsAuthenticated: (auth: boolean) => void;
+}
+
+const SignInPage: React.FC<SignInPageProps> = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -30,12 +34,14 @@ const SignInPage: React.FC = () => {
       console.log('Login successful', response.data);
       localStorage.setItem('accessToken', response.data.accessToken);
       localStorage.setItem('refreshToken', response.data.refreshToken);
-      setIsLoading(false);
+      setIsAuthenticated(true);
 
       // Navigate to homepage or another route after successful login
       navigate('/home');
     } catch (error: any) {
       setErrorMessage('Invalid username or password. Please try again.');
+    }finally{
+      setIsLoading(false);
     }
   };
 
@@ -47,14 +53,17 @@ const SignInPage: React.FC = () => {
 
 
 
-  return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow">
-            <div className="card-body">
-              <h3 className="card-title text-center">Sign In</h3>
+return (
+  <div className="container mt-5">
+    <div className="row justify-content-center">
+      <div className="col-md-6">
+        <div className="card shadow">
+          <div className="card-body">
+            <h3 className="card-title text-center">Sign In</h3>
 
+            {isLoading ? (
+              <SpinnerLoading />
+            ) : (
               <form onSubmit={handleSubmit}>
                 <div className="form-group mb-3">
                   <label htmlFor="username">Username</label>
@@ -93,16 +102,17 @@ const SignInPage: React.FC = () => {
                   Sign In
                 </button>
               </form>
+            )}
 
-              <div className="text-center mt-3">
-                <a href="/forgot-password">Need help signing in?</a>
-              </div>
+            <div className="text-center mt-3">
+              <a href="/forgot-password">Need help signing in?</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default SignInPage;
